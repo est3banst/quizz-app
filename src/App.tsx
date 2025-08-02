@@ -196,7 +196,11 @@ function App() {
     </p>
     <button
       onClick={() => {
-        location.reload()
+        setSelection('');
+        setShowResults(false);
+        setCurrentIndex(0);
+        setAnswerCounter(0);
+        setQuestions([]);
       }}
       className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600"
     >
