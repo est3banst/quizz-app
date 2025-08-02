@@ -7,14 +7,23 @@ const token_API = 'https://opentdb.com/api_token.php?command=request'
 
 
 function App() {
+
+   type Question = {
+    category: string;
+    type: string;
+    difficulty: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+  };
   
   const [category, setCategory] = useState('any')
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState<Question[]>([])
   const [answerCounter, setAnswerCounter] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showResults, setShowResults] = useState(false);
   const [error, setError] = useState('')
-  const [selection, setSelection] = useState(null)
+  const [selection, setSelection] = useState('')
   const [token, setToken] = useState('')
 
   const [showQuiz, setShowQuiz] = useState(false)
@@ -22,7 +31,7 @@ function App() {
   useEffect(() => {
   const fetchToken = async () => {
     try {
-      const res = await fetch('https://opentdb.com/api_token.php?command=request');
+      const res = await fetch(token_API);
       const data = await res.json();
       setToken(data.token);
     } catch (err) {
@@ -33,7 +42,7 @@ function App() {
   fetchToken();
 }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('')
     if (category === 'any') {
@@ -69,7 +78,7 @@ function App() {
   const handleNext = () => {
   if (currentIndex < questions.length - 1) {
     setCurrentIndex((prev) => prev + 1);
-    setSelection(null);
+    setSelection('');
   } else {
     setShowQuiz(false);
     setShowResults(true);
@@ -77,6 +86,7 @@ function App() {
 };
 
   const shuffledAnswers = useMemo(() => {
+  ;
   if (!questions[currentIndex]) return [];
   return [
     ...questions[currentIndex].incorrect_answers,
