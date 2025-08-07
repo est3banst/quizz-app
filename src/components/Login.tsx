@@ -6,12 +6,12 @@ const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-const signOutRedirect = () => {
-    const clientId = "4b8mtkbo6osirqjj04d6agssg6";
-    const logoutUri = "https://localhost:5173/";
-    const cognitoDomain = "https://sa-east-1yhifirvmq.auth.sa-east-1.amazoncognito.com";
-    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
-  };
+// const signOutRedirect = () => {
+//     const clientId = "4b8mtkbo6osirqjj04d6agssg6";
+//     const logoutUri = "https://localhost:5173/";
+//     const cognitoDomain = "https://sa-east-1yhifirvmq.auth.sa-east-1.amazoncognito.com";
+//     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+//   };
 
   const playAsGuest = () => {
     localStorage.setItem("guest", "true");

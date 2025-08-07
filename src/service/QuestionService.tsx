@@ -1,4 +1,4 @@
-import { token_API , API_URL} from '../api-routes/routes.tsx'
+import { API_URL} from '../api-routes/routes.tsx'
 import type Question from '../types/Question.ts'
 
 export const fetchQuestions = async (category: number, token: string) => {

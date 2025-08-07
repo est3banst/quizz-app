@@ -28,8 +28,6 @@ const Quizz = () => {
             console.error("Error fetching token:", err);
         }
     };
-    const storedUser = localStorage.getItem('guest')
-
   fetchToken();
 }, []);
     
