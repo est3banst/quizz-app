@@ -28,16 +28,12 @@ const Login = () => {
   }
 
   if (auth.error) {
-    return <div>Encountering error... {auth.error.message}</div>;
+    return <div>error... {auth.error.message}</div>;
   }
 
   if (auth.isAuthenticated) {
-    return (
-      <div>
-        <pre>Hello: {auth.user?.profile.email}</pre>
-        <button onClick={signOut}>Sign out</button>
-      </div>
-    );
+    navigate("/quizz");
+    return null;
   }
 
   return (
