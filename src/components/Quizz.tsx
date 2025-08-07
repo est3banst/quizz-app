@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Nav from './Nav'
 import { token_API } from '../api-routes/routes.tsx'
 import { fetchQuestions } from '../service/QuestionService.tsx'
+import { useAuth } from 'react-oidc-context'
 
 
 const Quizz = () => {
@@ -16,6 +17,7 @@ const Quizz = () => {
     const [error, setError] = useState('')
     const [selection, setSelection] = useState('')
     const [showQuiz, setShowQuiz] = useState(false)
+    const auth = useAuth();
 
     useEffect(() => {
         const fetchToken = async () => {
@@ -30,7 +32,9 @@ const Quizz = () => {
     };
   fetchToken();
 }, []);
-    
+    const signOut = () => {
+        auth.removeUser();
+    }
     const getQuestions = async (category: number) => {
         try {
             const questionsData = await fetchQuestions(category, token);
@@ -79,7 +83,7 @@ const handleNext = () => {
 <>
 <Nav/>
     <main className='space-y-5 p-4 gap-2 h-screen flex flex-col items-center justify-center min-w-2xs'>
-
+<button onClick={signOut}>Sign out</button>
   { !showQuiz ? (
         <>
       <div>

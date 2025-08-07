@@ -18,10 +18,10 @@ const Login = () => {
     navigate("/quizz");
   };
 
-  const signOut = () => {
-    localStorage.removeItem("guest");
-    auth.removeUser(); 
-  };
+  // const signOut = () => {
+  //   localStorage.removeItem("guest");
+  //   auth.removeUser(); 
+  // };
 
   if (auth.isLoading) {
     return <Loader/>;
