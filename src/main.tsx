@@ -9,10 +9,10 @@ import App from './App.tsx'
 
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.sa-east-1.amazonaws.com/sa-east-1_yhiFIRVmQ",
-  client_id: "4b8mtkbo6osirqjj04d6agssg6",
+  client_id: "1kg2mfah43ndkqoajjcchtv1uj",
   redirect_uri: "https://quizz-app-plum-theta.vercel.app/",
   response_type: "code",
-  scope: "phone openid email",
+  scope: "email openid phone",
 };
 
 createRoot(document.getElementById('root')!).render(
