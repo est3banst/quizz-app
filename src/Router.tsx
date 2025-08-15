@@ -1,16 +1,15 @@
 import { Route, Routes} from 'react-router-dom'
-import Login from './components/Login'
+import Login from './user-login/Login'
 import Quizz from './components/Quizz'
-import AuthMiddle from './components/AuthMiddle'
+import SignOnQuizz from './user-login/SignOnQuizz'
 
 const Router = () => {
   return (
     <Routes>
         <Route path='/' element={<Login/>} />
+        <Route path='/account' element={<SignOnQuizz/>} />
         <Route path='/quizz' element={
-            <AuthMiddle>
                 <Quizz/>
-            </AuthMiddle>
             } />
     </Routes>
   )
