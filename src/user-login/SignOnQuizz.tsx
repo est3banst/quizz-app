@@ -3,7 +3,7 @@ import { Amplify } from "aws-amplify";
 import { signUp, confirmSignUp, signIn, getCurrentUser } from "aws-amplify/auth";
 import awsExports from "../aws-exports";
 import { useUser } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 Amplify.configure(awsExports);
 
@@ -15,7 +15,7 @@ const SignOnQuizz = () => {
   const [confirmationCode, setConfirmationCode] = useState("");
   const [step, setStep] = useState<"form" | "confirm">("form");
   const [loading, setLoading] = useState(false);
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -73,7 +73,9 @@ const SignOnQuizz = () => {
   return (
     <div>
       <h1 className="text-3xl text-center font-black py-6">
-        Quizz <span className="relative inline-block decorated">Time</span>
+        <Link to="/">
+          Quizz <span className="relative inline-block decorated">Time</span>
+        </Link>
       </h1>
 
       {step === "form" && (

@@ -12,7 +12,7 @@ type AuthMiddlewareProps = {
 const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,14 +26,25 @@ const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
           email: currentUser.signInDetails?.loginId || "",
         });
 
-        if ((location.pathname === "/" || location.pathname === "/login") && currentUser) {
+        if ((location.pathname === "/" || location.pathname === "/account") && currentUser) {
           navigate("/quizz", { replace: true });
         }
+        
       } catch {
-        setUser(null);
 
-        if (!["/", "/login", "/about"].includes(location.pathname)) {
-          navigate("/login", { replace: true });
+        if (localStorage.getItem('guest') === 'true') {
+          console.log("Guest detected");
+          setUser({
+            id: 'guest',
+            email: ''
+          });
+       
+        }
+        else {
+          setUser(null);
+              if (!["/", "/account", "/about"].includes(location.pathname)) {
+                navigate("/account", { replace: true });
+              }
         }
       } finally {
         setLoading(false);
