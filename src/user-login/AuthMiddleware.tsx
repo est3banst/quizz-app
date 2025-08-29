@@ -12,7 +12,7 @@ type AuthMiddlewareProps = {
 const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setUser } = useUser();
+  const { user ,setUser } = useUser();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +25,8 @@ const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
           id: currentUser.userId,
           email: currentUser.signInDetails?.loginId || "",
         });
-
+        localStorage.setItem('userEmail', user?.email || '');
+        localStorage.setItem('userId', user?.id || '');
         if ((location.pathname === "/" || location.pathname === "/account") && currentUser) {
           navigate("/quizz", { replace: true });
         }
