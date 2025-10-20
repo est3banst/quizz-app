@@ -72,34 +72,36 @@ const SignOnQuizz = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center font-black py-6">
+
+  <h1 className="text-3xl text-center font-black py-6">
         <Link to="/">
           Quizz <span className="relative inline-block decorated">Time</span>
         </Link>
       </h1>
 
       {step === "form" && (
-        <form
+        <div className="w-4/6 p-6 h-1/2 border m-auto border-slate-50">
+          <form
           className="flex items-center justify-center flex-col p-4 gap-3"
           onSubmit={handleSubmit}
         >
-          <label className="min-w-80" htmlFor="email">
+          <label className="min-w-80 font-black" htmlFor="email">
             Email:
           </label>
           <input
             id="email"
             type="email"
-            className="border min-w-80 border-gray-400 px-2 py-1"
+            className="border min-w-80 rounded-md border-gray-400 px-2 py-1"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label className="min-w-80" htmlFor="password">
+          <label className="min-w-80 font-black" htmlFor="password">
             Contraseña:
           </label>
           <input
             id="password"
-            className="border min-w-80 border-gray-400 px-2 py-1"
+            className="border min-w-80 rounded-md border-gray-400 px-2 py-1"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -107,12 +109,12 @@ const SignOnQuizz = () => {
 
           {!signOn && (
             <>
-              <label className="min-w-80" htmlFor="confirmPassword">
+              <label className="min-w-80 font-black" htmlFor="confirmPassword">
                 Confirmar Contraseña:
               </label>
               <input
                 id="confirmPassword"
-                className="border min-w-80 border-gray-400 px-2 py-1"
+                className="border min-w-80 rounded-md border-gray-400 px-2 py-1"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -142,6 +144,7 @@ const SignOnQuizz = () => {
               : "¿Ya tienes cuenta? Inicia sesión"}
           </button>
         </form>
+        </div>
       )}
 
       {step === "confirm" && (
@@ -169,6 +172,8 @@ const SignOnQuizz = () => {
           </button>
         </form>
       )}
+
+      
     </div>
   );
 };
